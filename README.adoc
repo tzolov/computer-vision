@@ -14,7 +14,9 @@ include::spring-cloud-starter-stream-source-webcam/README.adoc[]
 ---
 
 ### frame-grabber source
-*Description*: TODO
+https://github.com/bytedeco/javacv[javaCV] (OpenCV java wrapper) powered processor
+Reads a file or camera video stream, extracts single video frames as images and feeds them to the outbound binder.
+You can configure the source location size of the output images and the frame grabbing interval.
 
 include::spring-cloud-starter-stream-source-frame-grabber/README.adoc[]
 ---
@@ -32,7 +34,8 @@ include::spring-cloud-starter-stream-processor-ocr-reader/README.adoc[]
 ---
 
 ### qr-reader processor
-*Description*: TODO
+
+Multi-format 1D/2D barcode image reader processor. Based on https://github.com/zxing/zxing[ZXing] ("Zebra Crossing") barcode scanning library for Java.
 
 include::spring-cloud-starter-stream-processor-qr-reader/README.adoc[]
 ---
