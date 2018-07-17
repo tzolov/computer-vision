@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.springframework.cloud.stream.app</groupId>
+	<artifactId>computer-vision-app-dependencies</artifactId>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>computer-vision-app-dependencies</name>
+	<description>Spring Cloud Stream computer-vision App Dependencies</description>
+
+	<parent>
+		<artifactId>spring-cloud-dependencies-parent</artifactId>
+		<groupId>org.springframework.cloud</groupId>
+		<version>2.0.2.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<spring-cloud-stream.version>2.0.0.RELEASE</spring-cloud-stream.version>
+		<openimaj.version>1.3.6</openimaj.version>
+		<webcam-capture.version>0.3.12</webcam-capture.version>
+		<javacv.version>1.4.1</javacv.version>
+		<zxing.version>3.3.3</zxing.version>
+		<tesseract-platform.version>3.05.01-1.4.1</tesseract-platform.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.bytedeco.javacpp-presets</groupId>
+				<artifactId>tesseract-platform</artifactId>
+				<version>${tesseract-platform.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${zxing.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.bytedeco</groupId>
+				<artifactId>javacv-platform</artifactId>
+				<version>${javacv.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.openimaj</groupId>
+				<artifactId>core</artifactId>
+				<version>${openimaj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openimaj</groupId>
+				<artifactId>core-video-capture</artifactId>
+				<version>${openimaj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openimaj</groupId>
+				<artifactId>faces</artifactId>
+				<version>${openimaj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openimaj</groupId>
+				<artifactId>xuggle-video</artifactId>
+				<version>${openimaj.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.sarxos</groupId>
+				<artifactId>webcam-capture</artifactId>
+				<version>${webcam-capture.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-stream-reactive</artifactId>
+				<version>${spring-cloud-stream.version}</version>
+			</dependency>
+
+			<!-- APPS -->
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-common-computer-vision</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-source-webcam</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-source-frame-grabber</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-sink-frame-recorder</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-ocr-reader</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-qr-reader</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-sink-image-viewer</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-common</artifactId>
+				<version>${spring-cloud-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>computer-vision-app-starters-test-support</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-stream-test-support</artifactId>
+				<version>${spring-cloud-stream.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

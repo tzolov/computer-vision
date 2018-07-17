@@ -1,0 +1,43 @@
+//tag::ref-doc[]
+= FrameRecorder Sink
+
+
+== Options
+//tag::configuration-properties[]
+$$frame.recorder.sink.audio-channel$$:: $$0 - no Audio supported$$ *($$Integer$$, default: `$$0$$`)*
+$$frame.recorder.sink.height$$:: $$Recorded image height$$ *($$Integer$$, default: `$$480$$`)*
+$$frame.recorder.sink.output-file$$:: $$Output video file location$$ *($$File$$, default: `$$<none>$$`)*
+$$frame.recorder.sink.video-format$$:: $$Set the Video format (e.g. mp4, flv, avi ...) explicitly. If empty Recorder will auto detect the output format from the name.$$ *($$String$$, default: `$$<none>$$`)*
+$$frame.recorder.sink.width$$:: $$Recorded image width$$ *($$Integer$$, default: `$$640$$`)*
+//end::configuration-properties[]
+
+//end::ref-doc[]
+== Build
+
+Build involves two-stages. First build the apps and generate the binder specific app starters projects:
+```
+$ ./mvnw clean install -PgenerateApps
+```
+
+You can find the corresponding binder based projects in the `apps` subfolder. You can then cd into the apps folder:
+
+```
+$ cd apps
+```
+and build all binder projects
+```
+$ ./mvnw clean package
+```
+
+== Examples
+
+```
+java -jar frame-recorder-sink.jar ... use the properties TODO
+```
+
+And here is a example pipeline that uses frame-recorder:
+
+```
+frame-recorder-stream= TODO
+```
+

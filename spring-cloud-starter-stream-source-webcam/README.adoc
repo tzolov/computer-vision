@@ -1,0 +1,51 @@
+//tag::ref-doc[]
+
+= Webcam Source
+
+https://github.com/sarxos/webcam-capture[Sarxos/webcam-capture] based Webcam Source that allows reading video streams from integrated or USB-connected webcams.
+
+The `webcam` source reads the video stream from a webcam, extracts single video frames as images and feeds them to the outbound binder.
+
+NOTE: The `frame-grabber` source seems to perform better and allows playing input videos too.
+
+== Options
+
+//tag::configuration-properties[]
+$$webcam.cammera-index$$:: $$When more than one webcams are presented use the camera index specifies which one to use.$$ *($$Integer$$, default: `$$0$$`)*
+$$webcam.capture-interval$$:: $$<documentation missing>$$ *($$Long$$, default: `$$100$$`)*
+$$webcam.height$$:: $$<documentation missing>$$ *($$Integer$$, default: `$$144$$`)*
+$$webcam.image-format$$:: $$<documentation missing>$$ *($$String$$, default: `$$<none>$$`)*
+$$webcam.width$$:: $$<documentation missing>$$ *($$Integer$$, default: `$$176$$`)*
+//end::configuration-properties[]
+
+//end::ref-doc[]
+
+== Build
+
+Build involves two-stages. First build the apps and generate the binder specific app starters projects:
+```
+$ ./mvnw clean install -PgenerateApps
+```
+
+You can find the corresponding binder based projects in the `apps` subfolder. You can then cd into the apps folder:
+
+```
+$ cd apps
+```
+and build all binder projects
+```
+$ ./mvnw clean package
+```
+
+== Examples
+
+```
+java -jar webcam-source.jar ... use the properties TODO
+```
+
+And here is a example pipeline that uses webcam:
+
+```
+webcam-stream= TODO
+```
+
