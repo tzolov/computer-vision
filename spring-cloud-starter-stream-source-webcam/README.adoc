@@ -46,6 +46,6 @@ java -jar webcam-source.jar ... use the properties TODO
 And here is a example pipeline that uses webcam:
 
 ```
-webcam-stream= TODO
+webcam-stream=webcam --width=320 --height=240 --capture-interval=100 | image-viewer
 ```
 

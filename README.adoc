@@ -1,9 +1,10 @@
 # Spring Cloud Stream ComputerVision Applications
 
-Collection of Spring Cloud Stream App Starters for Computer Vision (CV) and Image Processing.
+Collection of https://cloud.spring.io/spring-cloud-stream-app-starters[Spring Cloud Stream App Starters] for Computer Vision (CV) and Image Processing.
 
-It leverages multiple 3rd party image processing libraries, including http://openimaj.org/[OpenIMAJ], https://github.com/bytedeco/javacv[javaCV],
+Different 3rd party libraries are leveraged, including http://openimaj.org/[OpenIMAJ], https://github.com/bytedeco/javacv[javaCV],
 http://webcam-capture.sarxos.pl[Sarxos], https://github.com/zxing/zxing[Zxing] and more
+
 
 ---
 ### webcam source
@@ -41,7 +42,8 @@ include::spring-cloud-starter-stream-processor-qr-reader/README.adoc[]
 ---
 
 ### image-viewer sink
-*Description*: TODO
+
+Java Swing/JFrame based, image and video viewer. Plots the inbound message's image payload to a JFrame panel.
 
 include::spring-cloud-starter-stream-sink-image-viewer/README.adoc[]
 ---

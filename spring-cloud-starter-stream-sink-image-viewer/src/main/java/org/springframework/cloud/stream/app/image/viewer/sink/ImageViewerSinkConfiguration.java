@@ -58,7 +58,7 @@ public class ImageViewerSinkConfiguration {
 
 	@Bean
 	public JFrame frame(DisplayUtilities.ImageComponent imageComponent) {
-		JFrame frame = DisplayUtilities.makeFrame("Spring Cloud Data Flow Viewer");
+		JFrame frame = DisplayUtilities.makeFrame(properties.getTitle());
 		frame.add(imageComponent);
 		return frame;
 	}

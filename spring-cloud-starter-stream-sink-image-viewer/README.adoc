@@ -1,9 +1,15 @@
 //tag::ref-doc[]
 = ImageViewer Sink
 
+Image and Video preview player. Expect a `btye[]` message payload containing the image to be plotted.
+The size of the panel is dynamically adjusted to fit the size of the image.
+
+Implementation is based on Java Swing/JFrame.
 
 == Options
+
 //tag::configuration-properties[]
+$$image.viewer.title$$:: $$Title shown at the top of the viewer panel$$ *($$String$$, default: `$$Spring Cloud Data Flow Viewer$$`)*
 //end::configuration-properties[]
 
 //end::ref-doc[]
@@ -27,12 +33,18 @@ $ ./mvnw clean package
 == Examples
 
 ```
-java -jar image-viewer-sink.jar ... use the properties TODO
+java -jar image-viewer-sink.jar --image.viewer.title="My Image Viewer"
 ```
 
 And here is a example pipeline that uses image-viewer:
 
 ```
-image-viewer-stream= TODO
+image-viewer-stream=file --directory='/input/images/` | image-viewer
+```
+
+or
+
+```
+video-file-stream=frame-grabber --width=640 --height=480 --capture-interval=1 --input-video-uri='http://techslides.com/demos/sample-videos/small.mp4' | image-viewer
 ```
 

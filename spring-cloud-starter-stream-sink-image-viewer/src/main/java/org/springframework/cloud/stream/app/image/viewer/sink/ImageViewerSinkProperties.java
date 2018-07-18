@@ -26,4 +26,17 @@ import org.springframework.validation.annotation.Validated;
 @ConfigurationProperties("image.viewer")
 @Validated
 public class ImageViewerSinkProperties {
+
+	/**
+	 * Title shown at the top of the viewer panel
+	 */
+	private String title = "Spring Cloud Data Flow Viewer";
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 }
