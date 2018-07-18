@@ -5,13 +5,14 @@ Collection of https://cloud.spring.io/spring-cloud-stream-app-starters[Spring Cl
 Different 3rd party libraries are leveraged, including http://openimaj.org/[OpenIMAJ], https://github.com/bytedeco/javacv[javaCV],
 http://webcam-capture.sarxos.pl[Sarxos], https://github.com/zxing/zxing[Zxing] and more
 
-
 ---
+
 ### webcam source
 Webcam Source that allows reading video streams from integrated or USB-connected webcams. Reads the video stream from a webcam, extracts single video frames as images and feeds them to the outbound binder.
 
 
 include::spring-cloud-starter-stream-source-webcam/README.adoc[]
+
 ---
 
 ### frame-grabber source
@@ -20,18 +21,21 @@ Reads a file or camera video stream, extracts single video frames as images and 
 You can configure the source location size of the output images and the frame grabbing interval.
 
 include::spring-cloud-starter-stream-source-frame-grabber/README.adoc[]
+
 ---
 
 ### frame-recorder sink
 *Description*: TODO
 
 include::spring-cloud-starter-stream-sink-frame-recorder/README.adoc[]
+
 ---
 
 ### ocr-reader processor
 *Description*: TODO
 
 include::spring-cloud-starter-stream-processor-ocr-reader/README.adoc[]
+
 ---
 
 ### qr-reader processor
@@ -39,6 +43,7 @@ include::spring-cloud-starter-stream-processor-ocr-reader/README.adoc[]
 Multi-format 1D/2D barcode image reader processor. Based on https://github.com/zxing/zxing[ZXing] ("Zebra Crossing") barcode scanning library for Java.
 
 include::spring-cloud-starter-stream-processor-qr-reader/README.adoc[]
+
 ---
 
 ### image-viewer sink
@@ -46,5 +51,6 @@ include::spring-cloud-starter-stream-processor-qr-reader/README.adoc[]
 Java Swing/JFrame based, image and video viewer. Plots the inbound message's image payload to a JFrame panel.
 
 include::spring-cloud-starter-stream-sink-image-viewer/README.adoc[]
+
 ---
 
