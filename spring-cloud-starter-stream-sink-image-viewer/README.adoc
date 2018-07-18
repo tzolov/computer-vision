@@ -39,7 +39,7 @@ java -jar image-viewer-sink.jar --image.viewer.title="My Image Viewer"
 And here is a example pipeline that uses image-viewer:
 
 ```
-image-viewer-stream=file --directory='/input/images/` | image-viewer
+image-viewer-stream=file --directory='/input/images/' | image-viewer
 ```
 
 or
