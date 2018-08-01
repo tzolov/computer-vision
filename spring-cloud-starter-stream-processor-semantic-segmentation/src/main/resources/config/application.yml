@@ -1,0 +1,7 @@
+tensorflow:
+  modelFetch: SemanticPredictions:0
+  model: file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb
+semantic:
+  segmentation:
+    processor:
+      blandMask: true

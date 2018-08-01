@@ -25,6 +25,8 @@
 		<module>spring-cloud-starter-stream-processor-ocr-reader</module>
 		<module>spring-cloud-starter-stream-processor-qr-reader</module>
 		<module>spring-cloud-starter-stream-sink-image-viewer</module>
+		<module>spring-cloud-starter-stream-processor-face-detection-mtcnn</module>
+		<module>spring-cloud-starter-stream-processor-semantic-segmentation</module>
 	</modules>
 
 	<dependencyManagement>

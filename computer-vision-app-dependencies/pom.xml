@@ -21,13 +21,20 @@
 		<spring-cloud-stream.version>2.0.0.RELEASE</spring-cloud-stream.version>
 		<openimaj.version>1.3.6</openimaj.version>
 		<webcam-capture.version>0.3.12</webcam-capture.version>
-		<javacv.version>1.4.1</javacv.version>
+		<javacv.version>1.4.2</javacv.version>
 		<zxing.version>3.3.3</zxing.version>
 		<tesseract-platform.version>3.05.01-1.4.1</tesseract-platform.version>
+		<spring-cloud-starter-stream-common-tensorflow.vesion>2.0.2.BUILD-SNAPSHOT</spring-cloud-starter-stream-common-tensorflow.vesion>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-common-tensorflow</artifactId>
+				<version>${spring-cloud-starter-stream-common-tensorflow.vesion}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.bytedeco.javacpp-presets</groupId>
@@ -114,6 +121,16 @@
 			<dependency>
 				<groupId>org.springframework.cloud.stream.app</groupId>
 				<artifactId>spring-cloud-starter-stream-sink-image-viewer</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-face-detection-mtcnn</artifactId>
+				<version>1.0.0.BUILD-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-semantic-segmentation</artifactId>
 				<version>1.0.0.BUILD-SNAPSHOT</version>
 			</dependency>
 

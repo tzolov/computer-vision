@@ -54,3 +54,22 @@ include::spring-cloud-starter-stream-sink-image-viewer/README.adoc[]
 
 ---
 
+### face-detection-mtcnn processor
+
+*Description*: WIP
+
+include::spring-cloud-starter-stream-processor-face-detection-mtcnn/README.adoc[]
+
+---
+
+### semantic-segmentation processor
+
+*Description*: Real-time Semantic Image Segmentation processor with Tensorflow, Java and Spring Cloud Stream.
+Semantic Segmentation is the process of associating each pixel of an image with a class label, (such as flower,
+person, road, sky, ocean, or car).
+
+
+include::spring-cloud-starter-stream-processor-semantic-segmentation/README.adoc[]
+
+---
+
