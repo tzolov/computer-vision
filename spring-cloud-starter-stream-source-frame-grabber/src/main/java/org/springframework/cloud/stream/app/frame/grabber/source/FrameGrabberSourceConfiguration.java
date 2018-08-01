@@ -41,6 +41,12 @@ import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.cloud.stream.reactive.StreamEmitter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.integration.annotation.InboundChannelAdapter;
+import org.springframework.integration.annotation.Poller;
+import org.springframework.integration.core.MessageSource;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.GenericMessage;
+import org.springframework.messaging.support.MessageBuilder;
 
 /**
  *
@@ -58,21 +64,39 @@ public class FrameGrabberSourceConfiguration {
 	@Autowired
 	private FrameGrabber frameGrabber;
 
-	@StreamEmitter
-	@Output(Source.OUTPUT)
-	public Flux<byte[]> emit() {
-		return Flux.interval(Duration.of(this.properties.getCaptureInterval(), ChronoUnit.MILLIS))
-				.map(l -> {
-					try {
-						Frame frame = this.frameGrabber.grab();
-						BufferedImage image = Java2DFrameUtils.toBufferedImage(frame);
-						return imageToBytes(resize(image, properties.getWidth(), properties.getHeight()));
-					}
-					catch (Exception e) {
-						logger.error("Failed to grab the frame or to convert the image", e);
-					}
-					return null;
-				});
+	//@StreamEmitter
+	//@Output(Source.OUTPUT)
+	//public Flux<byte[]> emit() {
+	//	return Flux.interval(Duration.of(this.properties.getCaptureInterval(), ChronoUnit.MILLIS))
+	//			.map(l -> {
+	//				try {
+	//					Frame frame = this.frameGrabber.grab();
+	//					BufferedImage image = Java2DFrameUtils.toBufferedImage(frame);
+	//					return imageToBytes(resize(image, properties.getWidth(), properties.getHeight()));
+	//				}
+	//				catch (Exception e) {
+	//					logger.error("Failed to grab the frame or to convert the image", e);
+	//				}
+	//				return null;
+	//			});
+	//}
+
+	@Bean
+	@InboundChannelAdapter(value = Source.OUTPUT, poller = @Poller(fixedDelay = "${frame.grabber.captureInterval:1000}", maxMessagesPerPoll = "1"))
+	public MessageSource<byte[]> myMessageSource() {
+		return () -> {
+			try {
+				Frame frame = frameGrabber.grab();
+				BufferedImage image = Java2DFrameUtils.toBufferedImage(frame);
+				return MessageBuilder.withPayload(
+						imageToBytes(resize(image, properties.getWidth(), properties.getHeight()))).build();
+			}
+			catch (Exception e) {
+				logger.error("Failed to grab the frame or to convert the image", e);
+			}
+			return null;
+
+		};
 	}
 
 	private byte[] imageToBytes(BufferedImage bufferedImage) throws IOException {
