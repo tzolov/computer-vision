@@ -41,6 +41,25 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<scm>
+		<connection>scm:git:git@github.com:tzolov/computer-vision.git</connection>
+		<developerConnection>scm:git:git@github.com:tzolov/computer-vision.git</developerConnection>
+		<url>https://github.com/tzolov/computer-vision</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>bintray-bigdata</id>
+			<url>https://api.bintray.com/maven/big-data/maven/computer-vision</url>
+		</repository>
+		<snapshotRepository>
+			<id>bintray-bigdata</id>
+			<url>https://api.bintray.com/maven/big-data/maven/computer-vision</url>
+		</snapshotRepository>
+		<site/>
+	</distributionManagement>
+
 	<profiles>
 		<profile>
 			<id>spring</id>

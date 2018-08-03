@@ -88,11 +88,6 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 
 				System.out.println(data.length);
 
-				//ByteArrayInputStream bais = new ByteArrayInputStream(data);
-				//BufferedImage bi = ImageIO.read(bais);
-				//System.out.println(bi.getWidth() + ":" + bi.getHeight());
-				//ImageIO.write(bi, "jpg", new FileOutputStream("./target/test1.jpg"));
-
 				IOUtils.write(data, new FileOutputStream("./target/test1.jpg"));
 			}
 		}
