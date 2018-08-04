@@ -141,7 +141,7 @@ public class SemanticSegmentationJavaCV implements SemanticSegmentationService<o
 
 		// To Bytes
 		//byte[] imageBytes = toBytes(mat);
-		byte[] imageBytes = toBytes2(mat);
+		byte[] imageBytes = toBytes(mat);
 
 		// Input Tensor
 		long[] shape = new long[] { BATCH_SIZE, mat.rows(), mat.cols(), mat.channels() };
@@ -226,14 +226,14 @@ public class SemanticSegmentationJavaCV implements SemanticSegmentationService<o
 	public static void main(String[] args) throws IOException {
 
 		// PASCAL VOC 2012
-		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb";
-		//String imagePath = "classpath:/images/VikiMaxiAdi.jpg";
+		String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb";
+		String imagePath = "classpath:/images/VikiMaxiAdi.jpg";
 
 		// CITYSCAPE
-		String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_cityscapes_train/frozen_inference_graph.pb";
+		// String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_cityscapes_train/frozen_inference_graph.pb";
 		//String imagePath = "classpath:/images/amsterdam-cityscape1.jpg";
 		//String imagePath = "classpath:/images/amsterdam-channel.jpg";
-		String imagePath = "classpath:/images/landsmeer.png";
+		// String imagePath = "classpath:/images/landsmeer.png";
 
 		// ADE20K
 		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_xception_ade20k_train/frozen_inference_graph.pb";

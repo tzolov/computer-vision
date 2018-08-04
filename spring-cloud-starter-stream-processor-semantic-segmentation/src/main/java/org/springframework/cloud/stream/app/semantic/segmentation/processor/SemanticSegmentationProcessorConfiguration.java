@@ -117,7 +117,7 @@ public class SemanticSegmentationProcessorConfiguration {
 						IplImage scaledImage = segmentationService.scaledImage(inputImage);
 
 						IplImage maskImage = segmentationService.createMaskImage(
-								maskPixels, width, height, properties.maskTransparency);
+								maskPixels, width, height, properties.getMaskTransparency());
 
 						IplImage blend = segmentationService.blendMask(maskImage, scaledImage);
 

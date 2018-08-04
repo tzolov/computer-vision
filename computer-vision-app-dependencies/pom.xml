@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.cloud.stream.app</groupId>
 	<artifactId>computer-vision-app-dependencies</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>computer-vision-app-dependencies</name>
 	<description>Spring Cloud Stream computer-vision App Dependencies</description>
@@ -26,6 +26,18 @@
 		<tesseract-platform.version>3.05.01-1.4.1</tesseract-platform.version>
 		<spring-cloud-starter-stream-common-tensorflow.vesion>2.0.2.BUILD-SNAPSHOT</spring-cloud-starter-stream-common-tensorflow.vesion>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>spring-experimental</id>
+			<url>http://repo.spring.io/test-libs-snapshot-local/</url>
+		</repository>
+		<snapshotRepository>
+			<id>spring-experimental</id>
+			<url>http://repo.spring.io/test-libs-snapshot-local/</url>
+		</snapshotRepository>
+		<site/>
+	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>

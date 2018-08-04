@@ -50,12 +50,12 @@
 
 	<distributionManagement>
 		<repository>
-			<id>bintray-bigdata</id>
-			<url>https://api.bintray.com/maven/big-data/maven/computer-vision</url>
+			<id>spring-experimental</id>
+			<url>http://repo.spring.io/test-libs-snapshot-local/</url>
 		</repository>
 		<snapshotRepository>
-			<id>bintray-bigdata</id>
-			<url>https://api.bintray.com/maven/big-data/maven/computer-vision</url>
+			<id>spring-experimental</id>
+			<url>http://repo.spring.io/test-libs-snapshot-local/</url>
 		</snapshotRepository>
 		<site/>
 	</distributionManagement>
