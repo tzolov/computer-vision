@@ -5,6 +5,23 @@ Collection of https://cloud.spring.io/spring-cloud-stream-app-starters[Spring Cl
 Different 3rd party libraries are leveraged, including http://openimaj.org/[OpenIMAJ], https://github.com/bytedeco/javacv[javaCV],
 http://webcam-capture.sarxos.pl[Sarxos], https://github.com/zxing/zxing[Zxing] and more
 
+Pre-build (snapshot) versions of the apps are available through the http://repo.spring.io/test-libs-snapshot-local[test-libs-snapshot-local] maven repository.
+First register the snapshot maven repository to your SCDF server (using `maven.remote-repositories.repo3.url` property):
+
+```
+ --maven.remote-repositories.repo3.url=http://repo.spring.io/test-libs-snapshot-local
+```
+Then use https://raw.githubusercontent.com/tzolov/computer-vision/master/CV-SNAPSHOT-stream-applications-rabbit-maven[CV-SNAPSHOT-stream-applications-rabbit-maven]
+to bulk import the listed app starters:
+
+https://raw.githubusercontent.com/tzolov/computer-vision/master/CV-SNAPSHOT-stream-applications-rabbit-maven
+
+```
+ dataflow:>app import --uri https://raw.githubusercontent.com/tzolov/computer-vision/master/CV-SNAPSHOT-stream-applications-rabbit-maven
+```
+
+## App Starters List
+
 ---
 
 ### webcam source

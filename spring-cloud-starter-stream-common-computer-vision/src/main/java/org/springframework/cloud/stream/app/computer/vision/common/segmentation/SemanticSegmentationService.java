@@ -1,4 +1,4 @@
-package org.springframework.cloud.stream.app.semantic.segmentation.processor.service;
+package org.springframework.cloud.stream.app.computer.vision.common.segmentation;
 
 import java.awt.image.BufferedImage;
 

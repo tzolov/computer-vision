@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -17,6 +18,7 @@ import javax.imageio.ImageIO;
 import org.tensorflow.Tensor;
 import org.tensorflow.types.UInt8;
 
+import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationService;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorFlowService;
 import org.springframework.cloud.stream.app.tensorflow.util.GraphicsUtils;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -52,51 +54,6 @@ public class SemanticSegmentationJava2D implements SemanticSegmentationService<B
 	private static final long CHANNELS = 3;
 	private static final int REQUIRED_INPUT_IMAGE_SIZE = 513;
 
-	public static void main(String[] args) throws IOException {
-
-		// PASCAL VOC 2012
-		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb";
-		//String imagePath = "classpath:/images/VikiMaxiAdi.jpg";
-
-		// CITYSCAPE
-		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_cityscapes_train/frozen_inference_graph.pb";
-		//String imagePath = "classpath:/images/amsterdam-cityscape1.jpg";
-		//String imagePath = "classpath:/images/amsterdam-channel.jpg";
-		//String imagePath = "classpath:/images/landsmeer.png";
-
-		// ADE20K
-		String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_xception_ade20k_train/frozen_inference_graph.pb";
-		String imagePath = "classpath:/images/interior.jpg";
-
-		BufferedImage inputImage = ImageIO.read(new DefaultResourceLoader().getResource(imagePath).getInputStream());
-
-		TensorFlowService tf = new TensorFlowService(new DefaultResourceLoader().getResource(tensorflowModelLocation));
-
-		SemanticSegmentationJava2D segmentationService = new SemanticSegmentationJava2D();
-
-		BufferedImage scaledImage = segmentationService.scaledImage(inputImage);
-
-		Tensor<UInt8> inTensor = segmentationService.createInputTensor(scaledImage);
-
-		Map<String, Tensor<?>> output = tf.evaluate(Collections.singletonMap(INPUT_TENSOR_NAME, inTensor),
-				Arrays.asList(OUTPUT_TENSOR_NAME));
-
-		Tensor<?> maskPixelsTensor = output.get(OUTPUT_TENSOR_NAME);
-
-		int height = (int) maskPixelsTensor.shape()[1];
-		int width = (int) maskPixelsTensor.shape()[2];
-		long[][] maskPixels = maskPixelsTensor.copyTo(new long[BATCH_SIZE][height][width])[0]; // take 0 because the batch size is 1.
-
-		int[][] maskPixelsInt = segmentationService.toIntArray(maskPixels);
-
-		BufferedImage mask = segmentationService.createMaskImage(maskPixelsInt, scaledImage.getWidth(), scaledImage.getHeight(), 0.35);
-
-		BufferedImage blended = segmentationService.blendMask(mask, scaledImage);
-
-		ImageIO.write(mask, "png", new File("./spring-cloud-starter-stream-processor-semantic-segmentation/target/java2Dmask.jpg"));
-		ImageIO.write(blended, "png", new File("./spring-cloud-starter-stream-processor-semantic-segmentation/target/java2Dblended.jpg"));
-	}
-
 	@Override
 	public BufferedImage scaledImage(String imagePath) {
 		try {
@@ -109,7 +66,12 @@ public class SemanticSegmentationJava2D implements SemanticSegmentationService<B
 
 	@Override
 	public BufferedImage scaledImage(byte[] image) {
-		return null;
+		try {
+			return scaledImage(ImageIO.read(new ByteArrayInputStream(image)));
+		}
+		catch (IOException e) {
+			throw new IllegalStateException("Failed to load Image from byte array", e);
+		}
 	}
 
 	@Override
@@ -216,4 +178,48 @@ public class SemanticSegmentationJava2D implements SemanticSegmentationService<B
 		return output;
 	}
 
+	public static void main(String[] args) throws IOException {
+
+		// PASCAL VOC 2012
+		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb";
+		//String imagePath = "classpath:/images/VikiMaxiAdi.jpg";
+
+		// CITYSCAPE
+		//String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_mnv2_cityscapes_train/frozen_inference_graph.pb";
+		//String imagePath = "classpath:/images/amsterdam-cityscape1.jpg";
+		//String imagePath = "classpath:/images/amsterdam-channel.jpg";
+		//String imagePath = "classpath:/images/landsmeer.png";
+
+		// ADE20K
+		String tensorflowModelLocation = "file:/Users/ctzolov/Downloads/deeplabv3_xception_ade20k_train/frozen_inference_graph.pb";
+		String imagePath = "classpath:/images/interior.jpg";
+
+		BufferedImage inputImage = ImageIO.read(new DefaultResourceLoader().getResource(imagePath).getInputStream());
+
+		TensorFlowService tf = new TensorFlowService(new DefaultResourceLoader().getResource(tensorflowModelLocation));
+
+		SemanticSegmentationJava2D segmentationService = new SemanticSegmentationJava2D();
+
+		BufferedImage scaledImage = segmentationService.scaledImage(inputImage);
+
+		Tensor<UInt8> inTensor = segmentationService.createInputTensor(scaledImage);
+
+		Map<String, Tensor<?>> output = tf.evaluate(Collections.singletonMap(INPUT_TENSOR_NAME, inTensor),
+				Arrays.asList(OUTPUT_TENSOR_NAME));
+
+		Tensor<?> maskPixelsTensor = output.get(OUTPUT_TENSOR_NAME);
+
+		int height = (int) maskPixelsTensor.shape()[1];
+		int width = (int) maskPixelsTensor.shape()[2];
+		long[][] maskPixels = maskPixelsTensor.copyTo(new long[BATCH_SIZE][height][width])[0]; // take 0 because the batch size is 1.
+
+		int[][] maskPixelsInt = segmentationService.toIntArray(maskPixels);
+
+		BufferedImage mask = segmentationService.createMaskImage(maskPixelsInt, scaledImage.getWidth(), scaledImage.getHeight(), 0.35);
+
+		BufferedImage blended = segmentationService.blendMask(mask, scaledImage);
+
+		ImageIO.write(mask, "png", new File("./spring-cloud-starter-stream-processor-semantic-segmentation/target/java2Dmask.jpg"));
+		ImageIO.write(blended, "png", new File("./spring-cloud-starter-stream-processor-semantic-segmentation/target/java2Dblended.jpg"));
+	}
 }

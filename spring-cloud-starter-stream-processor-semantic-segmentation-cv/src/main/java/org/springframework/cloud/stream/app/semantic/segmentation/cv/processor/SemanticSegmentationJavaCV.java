@@ -1,4 +1,4 @@
-package org.springframework.cloud.stream.app.semantic.segmentation.processor.service;
+package org.springframework.cloud.stream.app.semantic.segmentation.cv.processor;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -19,6 +19,7 @@ import org.bytedeco.javacv.Java2DFrameUtils;
 import org.tensorflow.Tensor;
 import org.tensorflow.types.UInt8;
 
+import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationService;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorFlowService;
 import org.springframework.cloud.stream.app.tensorflow.util.GraphicsUtils;
 import org.springframework.core.io.DefaultResourceLoader;

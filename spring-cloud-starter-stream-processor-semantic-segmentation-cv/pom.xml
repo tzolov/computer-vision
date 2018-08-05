@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-cloud-starter-stream-processor-semantic-segmentation</artifactId>
+    <artifactId>spring-cloud-starter-stream-processor-semantic-segmentation-cv</artifactId>
     <packaging>jar</packaging>
-    <name>spring-cloud-starter-stream-processor-semantic-segmentation</name>
-    <description>Spring Cloud Stream processor semantic-segmentation</description>
+    <name>spring-cloud-starter-stream-processor-semantic-segmentation-cv</name>
+    <description>Spring Cloud Stream processor semantic-segmentation-cv</description>
 
     <parent>
         <groupId>org.springframework.cloud.stream.app</groupId>
@@ -19,6 +19,10 @@
         <dependency>
             <groupId>org.springframework.cloud.stream.app</groupId>
             <artifactId>spring-cloud-starter-stream-common-tensorflow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
         </dependency>
 
         <dependency>
@@ -60,8 +64,8 @@
                         <version>${project.version}</version>
                     </bom>
                     <generatedApps>
-                        <semantic-segmentation-processor>
-                        </semantic-segmentation-processor>
+                        <semantic-segmentation-cv-processor>
+                        </semantic-segmentation-cv-processor>
                     </generatedApps>
                 </configuration>
             </plugin>

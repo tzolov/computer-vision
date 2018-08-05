@@ -6,6 +6,8 @@ source.webcam=maven://org.springframework.cloud.stream.app:webcam-source-rabbit:
 source.webcam.metadata=maven://org.springframework.cloud.stream.app:webcam-source-rabbit:jar:metadata:1.0.0-SNAPSHOT
 processor.semantic-segmentation=maven://org.springframework.cloud.stream.app:semantic-segmentation-processor-rabbit:1.0.0-SNAPSHOT
 processor.semantic-segmentation.metadata=maven://org.springframework.cloud.stream.app:semantic-segmentation-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT
+processor.semantic-segmentation-cv=maven://org.springframework.cloud.stream.app:semantic-segmentation-cv-processor-rabbit:1.0.0-SNAPSHOT
+processor.semantic-segmentation-cv.metadata=maven://org.springframework.cloud.stream.app:semantic-segmentation-cv-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT
 processor.qr-reader=maven://org.springframework.cloud.stream.app:qr-reader-processor-rabbit:1.0.0-SNAPSHOT
 processor.qr-reader.metadata=maven://org.springframework.cloud.stream.app:qr-reader-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT
 

@@ -145,6 +145,11 @@
 				<artifactId>spring-cloud-starter-stream-processor-semantic-segmentation</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-semantic-segmentation-cv</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>

@@ -1,13 +1,13 @@
 //tag::ref-doc[]
-= Semantic Segmentation Processor
+= Semantic Segmentation JavaCV Processor
 
 Real-time Semantic Image Segmentation processor with Tensorflow, Java and Spring Cloud Stream. This implementation uses
 the state-of-art deep learning, Tensorflow model: https://github.com/tensorflow/models/tree/master/research/deeplab[DeepLab].
 
 
-The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are implemented in https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics].
+The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are implemented in https://github.com/bytedeco/javacv[JavaCV/OpenCV API].
 
-  The `semantic-segmentation-cv` provides a mirror implementation of the processor that uses the same Tensorflow models but uses https://github.com/bytedeco/javacv[JavaCV/OpenCV API] for implementing the image-processing tasks.
+  The `semantic-segmentation` provides a mirror implementation of the processor that uses the same Tensorflow models but uses https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics] for implementing the image-processing tasks.
 
 
 > Semantic Segmentation is the process of associating each pixel of an image with a class label, (such as flower, person, road, sky, ocean, or car).
@@ -20,29 +20,22 @@ Three sets of pre-trained models, ready to use:
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-pascal-voc-2012[PASCAL VOC 2012]
 
-image:src/main/resources/doc/VikiMaxiAdi-all.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/VikiMaxiAdi-all.png[]
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-cityscapes[DeepLab models trained on Cityscapes]
 
-image:src/main/resources/doc/cityscape-all-small.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/cityscape-all-small.png[]
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-ade20k[DeepLab models trained on ADE20K]
 
-image:src/main/resources/doc/ADE20K-all-small.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/ADE20K-all-small.png[]
 
 Download the preferred model tar.gz from the https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md[model zoo] uncompress it and use the `frozen_inference_graph.pb` inside as model.
 
 ```
-stream create ss2 --definition "frame-grabber --width=640 --height=480 --capture-interval=1500 | semantic-segmentation --tensorflow.model-fetch='SemanticPredictions:0'  --tensorflow.model='file:/<FULL PATH TO>/frozen_inference_graph.pb' | log" --deploy
+stream create ss2 --definition "frame-grabber --width=640 --height=480 --capture-interval=1500 | semantic-segmentation-cv --tensorflow.model-fetch='SemanticPredictions:0'  --tensorflow.model='file:/<FULL PATH TO>/frozen_inference_graph.pb' | log" --deploy
 ```
 
-===== References:
-
-* https://ai.googleblog.com/2018/03/semantic-image-segmentation-with.html[Semantic Image Segmentation with DeepLab in TensorFlow]
-* https://github.com/tensorflow/models/tree/master/research/deeplab[DeepLab Project]
-
-
-NOTE: This processor is in an experimental state
 
 == Options
 
@@ -86,12 +79,12 @@ $ ./mvnw clean package
 == Examples
 
 ```
-java -jar semantic-segmentation-processor.jar ... use the properties TODO
+java -jar semantic-segmentation-cv-processor.jar ... use the properties TODO
 ```
 
-And here is a example pipeline that uses semantic-segmentation:
+And here is a example pipeline that uses semantic-segmentation-cv:
 
 ```
-semantic-segmentation-stream= TODO
+semantic-segmentation-cv-stream= TODO
 ```
 

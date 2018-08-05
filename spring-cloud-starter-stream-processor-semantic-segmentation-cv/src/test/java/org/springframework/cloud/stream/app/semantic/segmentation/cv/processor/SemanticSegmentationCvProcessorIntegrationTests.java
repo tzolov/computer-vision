@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.cloud.stream.app.semantic.segmentation.processor;
+package org.springframework.cloud.stream.app.semantic.segmentation.cv.processor;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -46,12 +47,10 @@ import org.springframework.util.StreamUtils;
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		webEnvironment = SpringBootTest.WebEnvironment.NONE,
-		properties = {
-				//"debug=false",
-		})
+		webEnvironment = SpringBootTest.WebEnvironment.NONE
+)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public abstract class SemanticSegmentationProcessorIntegrationTests {
+public abstract class SemanticSegmentationCvProcessorIntegrationTests {
 
 	@Autowired
 	protected Processor channels;
@@ -65,7 +64,7 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 			"tensorflow.model=file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb",
 
 	})
-	public static class SemanticSegmentationPayloadTests extends SemanticSegmentationProcessorIntegrationTests {
+	public static class SemanticSegmentationPayloadTests extends SemanticSegmentationCvProcessorIntegrationTests {
 
 		@Test
 		public void testOne() throws IOException {
@@ -90,8 +89,8 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 
 	@SpringBootConfiguration
 	@EnableAutoConfiguration
-	@Import(SemanticSegmentationProcessorConfiguration.class)
-	public static class TestSemanticSegmentationProcessorApplication {
+	@Import(SemanticSegmentationCvProcessorConfiguration.class)
+	public static class TestSemanticSegmentationCvProcessorApplication {
 
 	}
 

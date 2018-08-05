@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.cloud.stream.app.semantic.segmentation.processor;
+package org.springframework.cloud.stream.app.semantic.segmentation.cv.processor;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -24,13 +24,14 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bytedeco.javacpp.opencv_core;
+import org.bytedeco.javacv.Java2DFrameUtils;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.AbstractSemanticSegmentationProcessorConfiguration;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationProcessorProperties;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationService;
-import org.springframework.cloud.stream.app.semantic.segmentation.processor.service.SemanticSegmentationJava2D;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorflowCommonProcessorConfiguration;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorflowCommonProcessorProperties;
 import org.springframework.cloud.stream.messaging.Processor;
@@ -44,17 +45,18 @@ import org.springframework.context.annotation.Import;
 @EnableBinding(Processor.class)
 @EnableConfigurationProperties({ SemanticSegmentationProcessorProperties.class, TensorflowCommonProcessorProperties.class })
 @Import(TensorflowCommonProcessorConfiguration.class)
-public class SemanticSegmentationProcessorConfiguration
-		extends AbstractSemanticSegmentationProcessorConfiguration<BufferedImage> {
+public class SemanticSegmentationCvProcessorConfiguration extends
+		AbstractSemanticSegmentationProcessorConfiguration<opencv_core.IplImage> {
 
-	private static final Log logger = LogFactory.getLog(SemanticSegmentationProcessorConfiguration.class);
+	private static final Log logger = LogFactory.getLog(SemanticSegmentationCvProcessorConfiguration.class);
 
 	@Bean
-	public SemanticSegmentationService<BufferedImage> semanticSegmentationService() {
-		return new SemanticSegmentationJava2D();
+	public SemanticSegmentationService<opencv_core.IplImage> semanticSegmentationService() {
+		return new SemanticSegmentationJavaCV();
 	}
 
-	protected byte[] toByteArray(BufferedImage bufferedImage) throws IOException {
+	protected byte[] toByteArray(opencv_core.IplImage image) throws IOException {
+		BufferedImage bufferedImage = Java2DFrameUtils.toBufferedImage(image);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write(bufferedImage, "jpg", baos);
 		baos.flush();
