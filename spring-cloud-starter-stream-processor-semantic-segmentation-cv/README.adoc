@@ -4,15 +4,14 @@
 Real-time Semantic Image Segmentation processor with Tensorflow, Java and Spring Cloud Stream. This implementation uses
 the state-of-art deep learning, Tensorflow model: https://github.com/tensorflow/models/tree/master/research/deeplab[DeepLab].
 
-The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are implemented in https://github.com/bytedeco/javacv[JavaCV/OpenCV API].
-
-The link:../spring-cloud-starter-stream-processor-semantic-segmentation[semantic-segmentation] provides a mirror implementation of the processor that uses the same Tensorflow models but uses https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics] for implementing the image-processing tasks.
-
 > Semantic Segmentation is the process of associating each pixel of an image with a class label, (such as flower, person, road, sky, ocean, or car).
 
 The `semantic segmentation` produces class-aware masks, unlike the `instance segmentation` produces instance-aware region masks.
-For `instance segmentation` check the SCDF Object Detection Processor.
+For `instance segmentation` check the https://github.com/spring-cloud-stream-app-starters/tensorflow/tree/master/spring-cloud-starter-stream-processor-object-detection[SCDF Object Detection Processor].
 
+The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are implemented in https://github.com/bytedeco/javacv[JavaCV/OpenCV API].
+
+The link:../spring-cloud-starter-stream-processor-semantic-segmentation[semantic-segmentation] provides a mirror implementation of the processor that uses the same Tensorflow models but uses https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics] for implementing the image-processing tasks.
 
 Three sets of pre-trained models, ready to use:
 
