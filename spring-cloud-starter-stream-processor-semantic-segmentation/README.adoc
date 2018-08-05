@@ -1,5 +1,5 @@
 //tag::ref-doc[]
-= Semantic Segmentation Processor
+= Semantic Segmentation (Java 2D/Graphics 2D) Processor
 
 Real-time Semantic Image Segmentation processor with Tensorflow, Java and Spring Cloud Stream. This implementation uses
 the state-of-art deep learning, Tensorflow model: https://github.com/tensorflow/models/tree/master/research/deeplab[DeepLab].
