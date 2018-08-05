@@ -9,9 +9,11 @@ the state-of-art deep learning, Tensorflow model: https://github.com/tensorflow/
 The `semantic segmentation` produces class-aware masks, unlike the `instance segmentation` produces instance-aware region masks.
 For `instance segmentation` check the https://github.com/spring-cloud-stream-app-starters/tensorflow/tree/master/spring-cloud-starter-stream-processor-object-detection[SCDF Object Detection Processor].
 
-The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are implemented in https://github.com/bytedeco/javacv[JavaCV/OpenCV API].
+The image processing tasks required for preparing the inputs and processing the outputs of the Tensorflow models are
+implemented in https://github.com/bytedeco/javacv[JavaCV/OpenCV API].
 
-The link:../spring-cloud-starter-stream-processor-semantic-segmentation[semantic-segmentation] provides a mirror implementation of the processor that uses the same Tensorflow models but uses https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics] for implementing the image-processing tasks.
+NOTE: The link:../spring-cloud-starter-stream-processor-semantic-segmentation[semantic-segmentation] provides an equivalent semantic segmentation
+implementation but uses https://docs.oracle.com/javase/tutorial/2d/overview/index.html[Java 2D Graphics API] for implementing the image pre/post processing tasks.
 
 Three sets of pre-trained models, ready to use:
 
