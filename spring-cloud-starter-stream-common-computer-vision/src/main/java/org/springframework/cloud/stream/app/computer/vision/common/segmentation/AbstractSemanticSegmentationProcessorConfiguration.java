@@ -17,9 +17,12 @@
 package org.springframework.cloud.stream.app.computer.vision.common.segmentation;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Collections;
+import java.util.Map;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.tensorflow.Tensor;
@@ -122,9 +125,53 @@ abstract public class AbstractSemanticSegmentationProcessorConfiguration<T> {
 					}
 				}
 
-				return super.createOutputMessageBuilder(outputMessage, maskPixels);
+				String jsonMasks = toJson(maskPixels);
+				return super.createOutputMessageBuilder(outputMessage, jsonMasks.substring(0, 1000));
 			}
 		};
+	}
+
+	private String toJson(int[][] pixels) {
+		String masksBase64 = Base64.getEncoder().encodeToString(toBytes(pixels));
+		return String.format("{ \"columns\":%d, \"rows\":%d, \"masks\":\"%s\"}", pixels.length, pixels[0].length, masksBase64);
+	}
+
+	private int[][] toMasks(String json) throws IOException {
+		Map<String, Object> map = new ObjectMapper().readValue(json, Map.class);
+		int cols = (int) map.get("columns");
+		int rows = (int) map.get("rows");
+		String masksBase64 = (String) map.get("masks");
+
+		byte[] masks = Base64.getDecoder().decode(masksBase64);
+
+		return toInts(masks, cols, rows);
+	}
+
+	private byte[] toBytes(int[][] pixels) {
+		byte[] b = new byte[pixels.length * pixels[0].length * 4];
+		int bi = 0;
+		for (int i = 0; i < pixels.length; i++) {
+			for (int j = 0; j < pixels[0].length; j++) {
+				b[bi + 0] = (byte) (i >> 24);
+				b[bi + 1] = (byte) (i >> 16);
+				b[bi + 2] = (byte) (i >> 8);
+				b[bi + 3] = (byte) (i /*>> 0*/);
+				bi = bi + 4;
+			}
+		}
+		return b;
+	}
+
+	private int[][] toInts(byte[] b, int ic , int jc) {
+		int[][] intResult = new int[ic][jc];
+		int bi = 0;
+		for (int i = 0; i < ic; i++) {
+			for (int j = 0; j < jc; j++) {
+				intResult[i][j] = (b[bi] << 24) + (b[bi + 1] << 16) + (b[bi + 2] << 8) + b[bi + 3];
+				bi = bi + 4;
+			}
+		}
+		return intResult;
 	}
 
 	@Bean

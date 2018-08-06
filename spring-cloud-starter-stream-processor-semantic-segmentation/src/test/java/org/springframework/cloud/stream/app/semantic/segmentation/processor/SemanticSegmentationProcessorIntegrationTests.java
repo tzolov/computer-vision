@@ -62,7 +62,7 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 			//"tensorflow.model=file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb",
 
 	})
-	public static class SemanticSegmentationPayloadTests extends SemanticSegmentationProcessorIntegrationTests {
+	public static class SemanticSegmentationHeaderTests extends SemanticSegmentationProcessorIntegrationTests {
 
 		@Test
 		public void testOne() throws IOException {
@@ -81,6 +81,30 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 				System.out.println(data.length);
 
 				IOUtils.write(data, new FileOutputStream("./target/test1.jpg"));
+			}
+		}
+	}
+
+	@TestPropertySource(properties = {
+			"tensorflow.mode=payload",
+	})
+	public static class SemanticSegmentationPayloadTests extends SemanticSegmentationProcessorIntegrationTests {
+
+		@Test
+		public void testOne() throws IOException {
+			try (InputStream is = new ClassPathResource("/images/VikiMaxiAdi.jpg").getInputStream()) {
+
+				byte[] payload = StreamUtils.copyToByteArray(is);
+
+				channels.input().send(MessageBuilder.withPayload(payload).build());
+
+				Message<String> received = (Message<String>) messageCollector.forChannel(channels.output()).poll();
+
+				Assert.assertNotNull(received);
+
+				String data = received.getPayload();
+
+				System.out.println(data);
 			}
 		}
 	}
