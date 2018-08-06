@@ -19,15 +19,15 @@ Three sets of pre-trained models, ready to use:
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-pascal-voc-2012[PASCAL VOC 2012]
 
-image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/VikiMaxiAdi-all.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/test/resources/doc/VikiMaxiAdi-all.png[]
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-cityscapes[DeepLab models trained on Cityscapes]
 
-image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/cityscape-all-small.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/test/resources/doc/cityscape-all-small.png[]
 
 * https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md#deeplab-models-trained-on-ade20k[DeepLab models trained on ADE20K]
 
-image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/main/resources/doc/ADE20K-all-small.png[]
+image:../spring-cloud-starter-stream-processor-semantic-segmentation/src/test/resources/doc/ADE20K-all-small.png[]
 
 Download the preferred model tar.gz from the https://github.com/tensorflow/models/blob/master/research/deeplab/g3doc/model_zoo.md[model zoo] uncompress it and use the `frozen_inference_graph.pb` inside as model.
 

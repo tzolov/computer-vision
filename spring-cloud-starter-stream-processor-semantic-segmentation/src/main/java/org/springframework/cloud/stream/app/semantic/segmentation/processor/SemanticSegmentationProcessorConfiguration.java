@@ -30,7 +30,6 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.AbstractSemanticSegmentationProcessorConfiguration;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationProcessorProperties;
 import org.springframework.cloud.stream.app.computer.vision.common.segmentation.SemanticSegmentationService;
-import org.springframework.cloud.stream.app.semantic.segmentation.processor.service.SemanticSegmentationJava2D;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorflowCommonProcessorConfiguration;
 import org.springframework.cloud.stream.app.tensorflow.processor.TensorflowCommonProcessorProperties;
 import org.springframework.cloud.stream.messaging.Processor;

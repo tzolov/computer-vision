@@ -1,4 +1,4 @@
-package org.springframework.cloud.stream.app.semantic.segmentation.processor.service;
+package org.springframework.cloud.stream.app.semantic.segmentation.processor;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

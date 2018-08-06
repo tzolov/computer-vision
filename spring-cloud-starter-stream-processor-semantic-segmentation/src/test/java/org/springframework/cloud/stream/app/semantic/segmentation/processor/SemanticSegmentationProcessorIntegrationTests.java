@@ -46,10 +46,7 @@ import org.springframework.util.StreamUtils;
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @RunWith(SpringRunner.class)
 @SpringBootTest(
-		webEnvironment = SpringBootTest.WebEnvironment.NONE,
-		properties = {
-				//"debug=false",
-		})
+		webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public abstract class SemanticSegmentationProcessorIntegrationTests {
 
@@ -61,8 +58,8 @@ public abstract class SemanticSegmentationProcessorIntegrationTests {
 
 	@TestPropertySource(properties = {
 			"tensorflow.mode=header",
-			"tensorflow.modelFetch=SemanticPredictions:0",
-			"tensorflow.model=file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb",
+			//"tensorflow.modelFetch=SemanticPredictions:0",
+			//"tensorflow.model=file:/Users/ctzolov/Downloads/deeplabv3_mnv2_pascal_train_aug/frozen_inference_graph.pb",
 
 	})
 	public static class SemanticSegmentationPayloadTests extends SemanticSegmentationProcessorIntegrationTests {
