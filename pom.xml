@@ -26,6 +26,7 @@
 		<module>spring-cloud-starter-stream-processor-qr-reader</module>
 		<module>spring-cloud-starter-stream-sink-image-viewer</module>
 		<module>spring-cloud-starter-stream-processor-face-detection-mtcnn</module>
+		<module>spring-cloud-starter-stream-processor-face-recognition</module>
 		<module>spring-cloud-starter-stream-processor-semantic-segmentation</module>
 		<module>spring-cloud-starter-stream-processor-semantic-segmentation-cv</module>
 	</modules>
@@ -35,7 +36,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud.stream.app</groupId>
 				<artifactId>computer-vision-app-dependencies</artifactId>
-				<version>1.0.0.BUILD-SNAPSHOT</version>
+				<version>1.0.0-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

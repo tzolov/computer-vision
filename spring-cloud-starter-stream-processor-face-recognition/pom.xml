@@ -4,10 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>spring-cloud-starter-stream-processor-face-detection-mtcnn</artifactId>
+	<artifactId>spring-cloud-starter-stream-processor-face-recognition</artifactId>
 	<packaging>jar</packaging>
-	<name>spring-cloud-starter-stream-processor-face-detection-mtcnn</name>
-	<description>Spring Cloud Stream processor face-detection-mtcnn</description>
+	<name>spring-cloud-starter-stream-processor-face-recognition</name>
+	<description>Spring Cloud Stream processor face-recognition</description>
 
 	<parent>
 		<groupId>org.springframework.cloud.stream.app</groupId>
@@ -15,19 +15,30 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<properties>
-		<tensorflow.version>1.9.0</tensorflow.version>
-		<openblas.version>0.3.0</openblas.version>
-		<javacpp-presets.version>1.4.2</javacpp-presets.version>
-		<mkl.version>2018.3</mkl.version>
-		<mkl-dnn.version>0.15</mkl-dnn.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
-			<groupId>net.tzolov.cv</groupId>
-			<artifactId>mtcnn</artifactId>
-			<version>0.0.5-SNAPSHOT</version>
+			<groupId>org.springframework.cloud.stream.app</groupId>
+			<artifactId>spring-cloud-starter-stream-common-tensorflow</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.tensorflow</groupId>
+					<artifactId>tensorflow</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.tensorflow</groupId>
+					<artifactId>proto</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>tensorflow</artifactId>
+			<version>1.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tensorflow</groupId>
+			<artifactId>proto</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 
 		<dependency>
@@ -46,12 +57,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-compress</artifactId>
-			<version>1.17</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -75,34 +80,12 @@
 						<version>${project.version}</version>
 					</bom>
 					<generatedApps>
-						<face-detection-mtcnn-processor>
-						</face-detection-mtcnn-processor>
+						<face-recognition-processor>
+						</face-recognition-processor>
 					</generatedApps>
-					<copyResources>
-						<copyResource>
-							<groupId>net.tzolov.cv</groupId>
-							<artifactId>mtcnn</artifactId>
-							<version>0.0.2</version>
-							<includes>model2/pnet_graph.proto,model2/rnet_graph.proto,model2/onet_graph.proto</includes>
-						</copyResource>
-					</copyResources>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-			<name>Sonatype Nexus Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>daily</updatePolicy>  <!-- Optional, update daily -->
-			</snapshots>
-		</repository>
-	</repositories>
 </project>

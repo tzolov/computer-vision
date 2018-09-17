@@ -6,6 +6,14 @@ NOTE: WORK IN PROGRESS
 == Options
 
 //tag::configuration-properties[]
+$$face.detection.mtcnn.draw-face-annotations$$:: $$(for `augmentation` outputMode only!) Draw face annotations on top of the inbound image.$$ *($$Boolean$$, default: `$$true$$`)*
+$$face.detection.mtcnn.min-face-size$$:: $$Minimal face size to detect in the input image.$$ *($$Integer$$, default: `$$30$$`)*
+$$face.detection.mtcnn.output-mode$$:: $$Specifies the content type of the outbound message.$$ *($$OutputMode$$, default: `$$<none>$$`, possible values: `annotation`,`augmentation`,`alignment`)*
+$$face.detection.mtcnn.scale-factor$$:: $$(Internal config). Control the number of image pyramids used for the face detection$$ *($$Double$$, default: `$$0.709$$`)*
+$$face.detection.mtcnn.skip-face-annotation-header$$:: $$(for `augmentation` outputMode only!) Skip the face annotations from to the outbound message header.$$ *($$Boolean$$, default: `$$false$$`)*
+$$face.detection.mtcnn.step-one-threshold$$:: $$(internal config). Threshold for the first stage of the detection$$ *($$Double$$, default: `$$0.6$$`)*
+$$face.detection.mtcnn.step-three-threshold$$:: $$(internal config). Threshold for the third stage of the detection$$ *($$Double$$, default: `$$0.7$$`)*
+$$face.detection.mtcnn.step-two-threshold$$:: $$(internal config). Threshold for the second stage of the detection$$ *($$Double$$, default: `$$0.7$$`)*
 //end::configuration-properties[]
 
 //end::ref-doc[]

@@ -25,6 +25,7 @@
 		<zxing.version>3.3.3</zxing.version>
 		<tesseract-platform.version>3.05.01-1.4.1</tesseract-platform.version>
 		<spring-cloud-starter-stream-common-tensorflow.vesion>2.0.2.BUILD-SNAPSHOT</spring-cloud-starter-stream-common-tensorflow.vesion>
+		<nd4j.version>1.0.0-beta2</nd4j.version>
 	</properties>
 
 	<distributionManagement>
@@ -41,6 +42,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>org.nd4j</groupId>
+				<artifactId>nd4j-native-platform</artifactId>
+				<version>${nd4j.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.springframework.cloud.stream.app</groupId>
@@ -138,6 +145,11 @@
 			<dependency>
 				<groupId>org.springframework.cloud.stream.app</groupId>
 				<artifactId>spring-cloud-starter-stream-processor-face-detection-mtcnn</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud.stream.app</groupId>
+				<artifactId>spring-cloud-starter-stream-processor-face-recognition</artifactId>
 				<version>1.0.0-SNAPSHOT</version>
 			</dependency>
 			<dependency>
