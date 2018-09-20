@@ -12,4 +12,5 @@ processor.qr-reader=maven://org.springframework.cloud.stream.app:qr-reader-proce
 processor.qr-reader.metadata=maven://org.springframework.cloud.stream.app:qr-reader-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT
 face-detection-mtcnn=maven://org.springframework.cloud.stream.app:face-detection-mtcnn-processor-rabbit:1.0.0-SNAPSHOT
 face-detection-mtcnn.metadata=maven://org.springframework.cloud.stream.app:face-detection-mtcnn-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT
-
+face-recognition=maven://org.springframework.cloud.stream.app:recognition-processor-rabbit:1.0.0-SNAPSHOT
+face-recognition.metadata=maven://org.springframework.cloud.stream.app:recognition-processor-rabbit:jar:metadata:1.0.0-SNAPSHOT

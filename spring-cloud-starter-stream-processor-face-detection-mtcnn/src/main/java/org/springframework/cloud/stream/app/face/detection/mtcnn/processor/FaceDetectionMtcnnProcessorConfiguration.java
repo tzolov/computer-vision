@@ -16,11 +16,7 @@
 
 package org.springframework.cloud.stream.app.face.detection.mtcnn.processor;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -31,9 +27,9 @@ import javax.imageio.ImageIO;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.tzolov.cv.mtcnn.FaceAnnotation;
 import net.tzolov.cv.mtcnn.MtcnnService;
 import net.tzolov.cv.mtcnn.MtcnnUtil;
-import net.tzolov.cv.mtcnn.FaceAnnotation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.datavec.image.loader.Java2DNativeImageLoader;
@@ -170,40 +166,9 @@ public class FaceDetectionMtcnnProcessorConfiguration {
 	}
 
 	private byte[] drawFaceAnnotations(byte[] inputImage, FaceAnnotation[] faceAnnotations) throws IOException {
-
 		BufferedImage originalImage = toBufferedImage(inputImage);
-
-		Graphics2D g = originalImage.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		Stroke stroke = g.getStroke();
-		Color color = g.getColor();
-		g.setStroke(new BasicStroke(3));
-		g.setColor(Color.YELLOW);
-
-		for (FaceAnnotation faceAnnotation : faceAnnotations) {
-			FaceAnnotation.BoundingBox bbox = faceAnnotation.getBoundingBox();
-			g.drawRect(bbox.getX(), bbox.getY(), bbox.getW(), bbox.getH());
-			for (FaceAnnotation.Landmark lm : faceAnnotation.getLandmarks()) {
-				drawOval(lm.getPosition().getX(), lm.getPosition().getY(), g);
-			}
-		}
-
-		g.setStroke(stroke);
-		g.setColor(color);
-
-		// Augmented input augmentation
-		inputImage = MtcnnUtil.toByteArray(originalImage, "png");
-
-		g.dispose();
-
-		return inputImage;
-	}
-
-	private void drawOval(int x, int y, Graphics2D g) {
-		int radius = 2;
-		g.fillOval(x - radius, y - radius, 2 * radius, 2 * radius);
+		originalImage = MtcnnUtil.drawFaceAnnotations(originalImage, faceAnnotations);
+		return MtcnnUtil.toByteArray(originalImage, "png");
 	}
 
 	private String toJson(Object o) throws JsonProcessingException {
